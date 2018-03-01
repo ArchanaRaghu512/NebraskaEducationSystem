@@ -1,0 +1,175 @@
+---
+title: "Set4 Set5 Graph"
+
+author: "Archana Raghu"
+date: "11/7/2017"
+
+output:
+  html_document: default
+  pdf_document: default
+---
+
+### Steps to create the Graduation Percentage based on Category graph
+
+### Load the required Libraries and install the required packages
+
+```{r}
+
+library(readxl)	
+
+library(ggrepel)
+
+library(ggplot2)
+
+```
+
+### Loading the dataset 4
+
+```{r}
+
+setwd("~/Desktop/Nebraska education ")
+Set_4 <- read_excel("~/Desktop/Nebraska education /Set 4.xlsx")
+Graduation <- read_excel("Set 4.xlsx")
+Grad <- Graduation
+Grad[Grad == '-1'] <- NA
+GradSet <- na.omit(Grad)
+GradCln <- GradSet[c("Description","Graduation Count","Graduation Percentage")]
+
+```
+
+### Since there were around 13 description for all the students of a particular school, I have divided the dataset into three subsets based on their description.
+
+### Creating subsets based on the category
+
+```{r}
+
+### Have grouped "Male" and "Female" description and created a subset Gender.
+
+Gender <- GradCln[GradCln$Description == "Male" | GradCln$Description == "Female",]
+
+### Have grouped all the Ethnic descriptions and created a subset Ethnic.
+
+Ethnic <- GradCln[GradCln$Description == "Ethnic7 - Hispanic" | GradCln$Description == "Ethnic7 - American Indian/Alaska Native" | GradCln$Description == "Ethnic7 - Asian" | GradCln$Description == "Ethnic7 - Black or African American" | GradCln$Description == "Ethnic7 - Native Hawaiian or Other Pacific Islander" | GradCln$Description == "Ethnic7 - Black or African American" | GradCln$Description == "Ethnic7 - White" | GradCln$Description == "Ethnic7 - Two or More Races",]
+
+### Have grouped all the remaining descriptions and created a subset Others.
+ 
+Others <- GradCln[GradCln$Description == "Students eligible for free and reduced lunch" | GradCln$Description == "Special Education Students" | GradCln$Description == "English Language Learners",]
+
+```
+
+### Basic Plots and ggplot for for the category Gender
+
+```{r}
+
+Gender <- GradCln[GradCln$Description == "Male" | GradCln$Description == "Female",]
+
+plot(Gender$`Graduation Percentage`, type="l", col="Pink")
+
+plot(Gender$`Graduation Count`, type="l", col="Orange")
+
+Plot1 <- ggplot(Gender, aes(x = Description, y = `Graduation Percentage`)) + theme(legend.position = "top", axis.text = element_text(size = 6))
+
+(PLot1 <- Plot1 + geom_point(aes(color = `Graduation Count`), alpha = 0.5, size = 1.5, position = position_jitter(width = 0.25, height = 0)))
+
+### Represented the high and low values using different colors
+
+PLot1 + scale_x_discrete(name="Gender") + scale_color_continuous(name="",low="pink", high = "black")
+
+### This plot shows the graduation percentage and count based on Gender categories.
+
+### From the graph we can come to a conclusion that the "Male" and "Females" are almost but the males have a slightly high graduation percentage and count.
+
+```
+
+### Basic Plots and ggplot for for the category Ethnic
+
+```{r}
+
+Ethnic <- GradCln[GradCln$Description == "Ethnic7 - Hispanic" | GradCln$Description == "Ethnic7 - American Indian/Alaska Native" | GradCln$Description == "Ethnic7 - Asian" | GradCln$Description == "Ethnic7 - Black or African American" | GradCln$Description == "Ethnic7 - Native Hawaiian or Other Pacific Islander" | GradCln$Description == "Ethnic7 - Black or African American" | GradCln$Description == "Ethnic7 - White" | GradCln$Description == "Ethnic7 - Two or More Races",]
+
+plot(Ethnic$`Graduation Percentage`, type="b", col="Orange")
+
+boxplot(Ethnic$`Graduation Percentage`~Ethnic$Description)
+	
+ggplot(Ethnic,aes(x=`Graduation Count`))+ geom_histogram()
+	
+ggplot(Ethnic,aes(x=`Graduation Percentage`))+ geom_histogram()
+
+Plot2 <- ggplot(Ethnic, aes(x = Description, y = `Graduation Percentage`)) + theme(legend.position = "top", axis.text = element_text(size = 6))
+
+(PLot3 <- Plot2 + geom_point(aes(color = `Graduation Count`), alpha = 0.5, size = 1.5, position = position_jitter(width = 0.25, height = 0)))
+
+### Represented the high and low values using different colors
+
+PLot3 + scale_x_discrete(name="Ethnicity") + scale_color_continuous(low="blue", high = "red")
+
+### This plot shows the graduation percentage and count based on the the Ethnic categories.
+
+### From the graph we can come to a conclusion that the "Ethnic : Whites" have the highest graduation percentage and count.
+
+```
+
+
+### Basic Plots and ggplot for for the category Others
+
+```{r}
+
+Others <- GradCln[GradCln$Description == "Students eligible for free and reduced lunch" | GradCln$Description == "Special Education Students" | GradCln$Description == "English Language Learners",]
+
+plot(Others$`Graduation Percentage`, type="p", col="Brown")
+
+plot(Others$`Graduation Count`, type="l", col="Brown")
+
+Plot5 <-  ggplot(Others, aes(x = `Graduation Percentage`, y = `Graduation Count`))
+
+Plot5 + geom_line(aes(color = Description))
+
+Plot5 <- ggplot(Others, aes(x = Description, y = `Graduation Percentage`)) + theme(legend.position = "top", axis.text = element_text(size = 6))
+
+(Plot6 <- Plot5 + geom_point(aes(color = `Graduation Count`), alpha = 0.5, size = 1.5, position = position_jitter(width = 0.25, height = 0)))
+
+### Represented the high and low values using different colors
+
+Plot6 + scale_x_discrete(name="Other Category") + scale_color_continuous(name="",low="Orange", high = "Black")
+
+### This plot shows the graduation percentage and count based the Other categories.
+
+###From the graph we can come to a conclusion that the "Students eligible for free and reduced lunch" have the highest graduation percentage and count.
+
+```
+### Loading the dataset 5 
+
+```{r}
+
+setwd("~/Desktop/Nebraska education ")
+Set_5 <- read_excel("~/Desktop/Nebraska education /Set 5.xlsx")
+ELL <- read_excel("Set 5.xlsx")
+ELL[ELL == '-1'] <- NA
+ELLcln <- na.omit(ELL)
+ELLcln[c("ELL Percentage","Dropout Rate")]
+DropRate <- ELLcln[c("ELL Percentage","Dropout Rate")]
+
+```
+
+### Basic Plots and ggplot to see how the percentage of ELL affects the dropout rate
+
+```{r}
+
+boxplot(DropRate$`ELL Percentage`~ DropRate$`Dropout Rate`)
+
+ggplot(DropRate, aes(x = `ELL Percentage`)) + geom_histogram()
+
+ggplot(DropRate, aes(x = `Dropout Rate`)) + geom_histogram()
+
+Plot7 <- ggplot(DropRate, aes(x = `Dropout Rate`, y = `ELL Percentage`)) + theme(legend.position = "top", axis.text = element_text(size = 6))
+
+### This plot shows how the Dropout Rate is affected by the ELL Percentage.
+
+plot(DropRate$`Dropout Rate`~DropRate$`ELL Percentage`, type="p", col="Red")
+
+###From the graph we can come to a conclusion that the "Dropout Rate" of a school is high where the percentage of ELL is less and the Dropout Rate of the school is low where the ELL percentage is high. 
+
+```
+
+
+

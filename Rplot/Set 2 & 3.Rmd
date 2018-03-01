@@ -1,0 +1,119 @@
+---
+title: "Attendance Rate VS Dropout Rate"
+author: "Archana Raghu"
+date: "11/07/2017"
+output:
+  html_document: default
+  word_document: default
+---
+
+
+###Research Question: Does the percentage of teachers with masters degree has an impact on Students Dropout Rate
+
+### R Plots for Graphical Representation on the research Question
+
+
+
+
+```{r}
+library(readxl)	
+
+library(ggrepel)
+
+library(ggplot2)
+```
+
+Create a dataframe for the dataset, cleaned the dataset.
+```{r}
+setwd(""~/Desktop/Nebraska education "")
+set2 <- readxl::read_xlsx("~/Desktop/Nebraska education /Set 4.xlsx")
+set2 <- set2[set2$`Attendance Rate` > -1,]
+```
+## Plot
+## Basic Plot on Dropout rate VS Attendance Rate
+
+```{r}
+plot(set2$`Attendance Rate`,set2$`Dropout Rate`, main = "Attendance Rate VS Dropout Rate",xlab = "Attendance Rate",ylab = "Dropout Rate",col.lab="blue",cex.lab=0.75,cex=2,col="red")
+```
+
+### ggplot for Attendance rate VS Dropout rate.  
+
+Plotted the ggplot with point and smooth function which gives a layerof smooth surface covering the scattered points based on the values.   This is a clear and easy understanding to interpret how the dropout rate has been dropped for increasing attendance rate.  
+```{r}
+p1 <- ggplot(set2, aes(x = `Attendance Rate`, y = `Dropout Rate`))
+p1 + geom_point(aes(color = `Attendance Rate`)) +  geom_smooth()
+```
+
+### ggplot: Attendance rate VS Dropout rate for year 2015-2016.
+The label on the graph represents the district and state data. From the table the values of district schools are high compared to the state schools.
+```{r}
+yr20152016 <- set2[set2$`School Year`== 20152016, ]
+p1 <-  ggplot(yr20152016, aes(x = `Attendance Rate`, y = `Dropout Rate`, main ="Year 2015-2016"))
+p1 + geom_point(aes(color = `Attendance Rate`)) +  geom_smooth() + geom_text(aes(label=Type),size=3)
+```
+
+### ggplot: Log Attendance rate VS Dropout rate for year 2015-2016.  
+Applied arthimetic function log on the attendance rate column to display and scattered value which gives a clear picture on the decreaing dropout rate for increasing attendance rate.  
+That is being displayed in the below Graph.
+```{r}
+p1 <-  ggplot(yr20152016, aes(x = log(`Attendance Rate`), y = `Dropout Rate`))
+p1 + geom_point(aes(color = `Attendance Rate`)) +  geom_smooth()
+```
+
+---
+title: "Dropout Rate VS Teachers Masters Degree"
+author: "Archana Raghu"
+date: "11/07/2017"
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+---
+
+
+###Research Question: Does the percentage of teachers with masters degree has an impact on Students Dropout Rate
+
+### R Plots for Graphical Representation on the research Question
+
+
+
+
+```{r}
+library(readxl)	
+
+library(ggrepel)
+
+library(ggplot2)
+```
+
+Create a dataframe for the dataset, cleaned the dataset.
+```{r}
+setwd("C:/users/Ramya/Documents")
+set3 <- readxl::read_xlsx("Set 3.xlsx")
+set3 <- set3[set3$`Dropout Rate` > -1,]
+```
+
+#### Basic plot on Teachers with master's degree VS Dropout Rate.
+```{r}
+plot(set3$`Teachers with Masters Degree`,set3$`Dropout Rate`,main = "Percentage of Teachers with masters degree VS Dropout Rate",xlab = "% of teachers with master's Degree",ylab = "Dropout Rate",col.lab="blue",cex.lab=0.75,cex=2,col="red")
+```
+
+### Group: School Year on Teachers with masters degree VS Dropout Rate.
+
+#### ggplot on Teachers with master's degree VS Dropout Rate. 
+* Using ggplot created the plot for the same parameters.
+* And then used the facet function to split the plot based on the school year. 
+* By this we will know which year we had many dropout rates.
+```{r}
+plt1 <- ggplot(set3, aes(x = `Teachers with Masters Degree`, y = `Dropout Rate`))
+(plt2 <- plt1 + geom_line() + facet_wrap(~`School Year`))
+```
+
+### Group County wise Teachers with masters degree VS Dropout Rate.
+#### ggplot for teachers with masters degree VS Dropout Rate.
+Created the plot using ggplot package.  I had interpreted the data for each county on the same parameters.   
+By this we can figure out which school had the varying dropout rate with respect to percentage of teachers with masters degree.
+```{r}
+plt1 <- ggplot(set3, aes(x = `Teachers with Masters Degree`, y = `Dropout Rate`))
+(plt2 <- plt1 + geom_line() + facet_wrap(~`County`))
+```

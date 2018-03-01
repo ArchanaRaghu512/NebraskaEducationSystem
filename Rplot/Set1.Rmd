@@ -1,0 +1,164 @@
+---
+title: "Set 1 Data Analysis"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Set 1 Data Plot 1: All Scores by Subject
+
+This plot represents the entire Set 1 data. As you will notice the grading scale for each subject is not identical, so we need to evaluate the subjects separetly by splitting the data. The graph depicts a Boxplot overlayied a Violin plot. Nothing can be determined by this graph, this will just be an inital level set of the data we are working with.
+
+```{r plot 1, echo=FALSE}
+set1data <- read.csv("Set 1.csv",stringsAsFactors = FALSE)
+set1data$ï..Type <- factor(set1data$ï..Type)
+set1data$DataYears <- factor(set1data$DataYears)
+set1data$County <- factor(set1data$County)
+set1data$District <- factor(set1data$District)
+set1data$School <- factor(set1data$School)
+set1data$Agency.Name <- factor(set1data$Agency.Name)
+set1data$Subject <- factor(set1data$Subject)
+set1data$Grade_Code <- factor(set1data$Grade_Code)
+set1data$Category <- factor(set1data$Category)
+set1data$AYP.Group <- factor(set1data$AYP.Group)
+set1data$Standard.Code <- factor(set1data$Standard.Code)
+set1data$Standard <- factor(set1data$Standard)
+library("ggplot2");
+ggplot(set1data, aes(x=Subject, y=Standard.Correct.Percent))+geom_violin(fill='lightgreen')+geom_boxplot(fill="orange",width=0.2);
+```
+
+
+## Set 1 Data Plot 2: Math scores by Student Demographic
+
+After we split the data by Subject, the first Subject to be evaluated is Mathematics. This graph displays the Boxplot and Violin graph for all the Student demographics, which include the following Student Types. 
+
+* All students
+* American Indian/Alaska Native
+* Asian
+* Black or African American
+* English Language Learners
+* Female
+* Highly Mobile Students
+* Hispanic
+* Male
+* Native Hawaiian or Other Pacific Islander
+* Special Education Students
+* Special Education Students - Alternate Assessment
+* Students eligible for free and reduced lunch
+* Students served in migrant programs
+* Two or More Races
+* White
+
+The labels on the graph have been abbrevated to fit, and are a bit difficult to read, but the graph is in alphabetical order as the list is above.
+
+The Box Plot has been overlayed with a violin graph to check for any Bimodal situations that would cause us to believe the data is not normalaized. The graph seems to show that the data for each student type appears to be normal.
+
+The results of the Boxplot appears to show the highest scoring demographic in the subject area of Mathmatics is Asian students, followed by White, followed by Males, followed by Females.
+
+```{r plot2, out.width = '120%', echo=FALSE}
+subjectlist <- split(set1data, set1data$Subject);
+
+ggplot(subjectlist[[1]], aes(x=AYP.Group,y=Standard.Correct.Percent))+geom_violin(fill='lightgreen')+geom_boxplot(fill="orange",width=0.2)+ggtitle("Mathematic Scores by Student Type")+scale_x_discrete(labels = abbreviate);
+```
+
+
+## Set 1 Data Plot 3: Reading scores by Student Demographic
+
+After we split the data by Subject, the second Subject to be evaluated is Reading. This graph displays the Boxplot and Violin graph for all the Student demographics, which include the following Student Types. 
+
+* All students
+* American Indian/Alaska Native
+* Asian
+* Black or African American
+* English Language Learners
+* Female
+* Highly Mobile Students
+* Hispanic
+* Male
+* Native Hawaiian or Other Pacific Islander
+* Special Education Students
+* Special Education Students - Alternate Assessment
+* Students eligible for free and reduced lunch
+* Students served in migrant programs
+* Two or More Races
+* White
+
+The lables on the graph have been abbrevated to fit, and are a bit difficult to read, but the graph is in alphabetical order as the list is above.
+
+The Box Plot has been overlayed with a violin graph to check for any Bimodal situations that would cause us to believe the data is not normalaized. The graph seems to show that the data for each student type appears to be normal, with the exception of Highly Mobile Students and Native Hawaiian. Towards the bottom there does appear to be a surge of increasing values that would cause the data to be a bit skewed.
+
+The results of the Boxplot appears to show the highest scoring demographic in the subject area of Reading is White students, followed by Female, followed by Asian, followed by Two or More Races. Males came in 5th.
+
+```{r plot3, out.width = '120%', echo=FALSE}
+
+ggplot(subjectlist[[2]], aes(x=AYP.Group,y=Standard.Correct.Percent))+geom_violin(fill='lightgreen')+geom_boxplot(fill="orange",width=0.2)+ggtitle("Reading Scores by Student Type")+scale_x_discrete(labels = abbreviate);
+```
+
+
+## Set 1 Data Plot 4: Science scores by Student Demographic
+
+After we split the data by Subject, the third Subject to be evaluated is Science. This graph displays the Boxplot and Violin graph for all the Student demographics, which include the following Student Types. 
+
+* All students
+* American Indian/Alaska Native
+* Asian
+* Black or African American
+* English Language Learners
+* Female
+* Highly Mobile Students
+* Hispanic
+* Male
+* Native Hawaiian or Other Pacific Islander
+* Special Education Students
+* Special Education Students - Alternate Assessment
+* Students eligible for free and reduced lunch
+* Students served in migrant programs
+* Two or More Races
+* White
+
+The lables on the graph have been abbrevated to fit, and are a bit difficult to read, but the graph is in alphabetical order as the list is above.
+
+The Box Plot has been overlayed with a violin graph to check for any Bimodal situations that would cause us to believe the data is not normalaized. The graph seems to show that the data for each student type appears to be normal, except for Highly Mobile Students and Hispanic students. There seems to be a surge of increases values clustering towards the bottom, which could weight down the Average.
+
+The results of the Boxplot appears to show the highest scoring demographic in the subject area of Science is White students and or Male students (there seems to be a tie), followed by Female, followed by Students eligible for a free and reduced lunch, followed by Hispanic. There also appears to be a significant reduction in the scores for Asian, English Language Learners, and Students served in migrant programs. The first quartile appears to be pulled to the bottom of the graph.
+
+```{r plot4, out.width = '120%', echo=FALSE}
+
+ggplot(subjectlist[[3]], aes(x=AYP.Group,y=Standard.Correct.Percent))+geom_violin(fill='lightgreen')+geom_boxplot(fill="orange",width=0.2)+ggtitle("Science Scores by Student Type")+scale_x_discrete(labels = abbreviate);
+```
+
+
+## Set 1 Data Plot 5: Writing scores by Student Demographic
+
+After we split the data by Subject, the fourth Subject to be evaluated is Writing. This graph displays the Boxplot and Violin graph for all the Student demographics, which include the following Student Types. 
+
+* All students
+* American Indian/Alaska Native
+* Asian
+* Black or African American
+* English Language Learners
+* Female
+* Highly Mobile Students
+* Hispanic
+* Male
+* Native Hawaiian or Other Pacific Islander
+* Special Education Students
+* Special Education Students - Alternate Assessment
+* Students eligible for free and reduced lunch
+* Students served in migrant programs
+* Two or More Races
+* White
+
+The lables on the graph have been abbrevated to fit, and are a bit difficult to read, but the graph is in alphabetical order as the list is above.
+
+The Box Plot has been overlayed with a violin graph to check for any Bimodal situations that would cause us to believe the data is not normalaized. The graph seems to show that the data for each student type appears to be normal.
+
+The results of the Boxplot appears to show the highest scoring demographic in the subject area of Writing is Asian students, followed by Females, followed by White, followed by Two or More Races.
+
+```{r plot5, out.width = '120%', echo=FALSE}
+
+ggplot(subjectlist[[4]], aes(x=AYP.Group,y=Standard.Correct.Percent))+geom_violin(fill='lightgreen')+geom_boxplot(fill="orange",width=0.2)+ggtitle("Writing Scores by Student Type")+scale_x_discrete(labels = abbreviate);
+```

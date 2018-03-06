@@ -131,6 +131,8 @@ The results of the Boxplot appears to show the highest scoring demographic in th
 
 ### Research Question: Does the percentage of teachers with masters degree has an impact on Students Dropout Rate.
 
+#### [Link to RScripts used to create plots for Dataset 2&3](https://github.com/ArchanaRaghu512/NebraskaEducationSystem/blob/master/Rplot/Set%202%20%26%203.Rmd)
+
 #### Dataset-2 Plot 1: Percentage of teachers witih Masters Degree VS Dropout Rate.
   From the discussion board one curious question which everyone wanted to know, was does the teachers with masters degree has an impact on students dropout rate.  This basic plot gives us a interpretation that there wasn't much impact beacuse of teachers who had masters degree.  But there was a little decreasing scattered variation in the dropout rate.
   

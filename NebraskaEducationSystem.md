@@ -68,8 +68,7 @@ The following configurations were done using Microsoft Excel 2013 version (15.0.
 
 ## RPlots
 
-[Link to the RPlots]
-(https://github.com/ArchanaRaghu512/NebraskaEducationSystem/tree/master/Rplot)
+[Link to the RPlots](https://github.com/ArchanaRaghu512/NebraskaEducationSystem/tree/master/Rplot)
 
 ### Knitted HTML Documents
 

@@ -1,6 +1,8 @@
 
-Team Bazinga: R Plot Data Analysis
-================
+R Plot Data Analysis
+====================
+
+#### [Link to RScripts used to create plots for Dataset 1](https://github.com/ArchanaRaghu512/NebraskaEducationSystem/blob/master/Rplot/Set1.Rmd)
 
 Set 1 Data Plot 1: All Scores by Subject
 ----------------------------------------
@@ -147,6 +149,8 @@ The results of the Boxplot appears to show the highest scoring demographic in th
   To figure out if the attendance rate of students was related to the dropout rate. Plotted a ggplot which indicates that for increasing attendance rate the dropout rate was decreasing. This shows that the students attendance rate was a reason for the dropout rate.
 
 <img src="Images/Rplot- Atnd Rate.png" width="120%" />
+
+#### [Link to RScripts used to create plots for Dataset 4&5](https://github.com/ArchanaRaghu512/NebraskaEducationSystem/blob/master/Rplot/Set4Set5.rmd)
 
 Set 4 Data Plot 1: Graduation Percentage Based on Category Others
 -----------------------------------------------------------------

@@ -73,7 +73,7 @@ The following configurations were done using Microsoft Excel 2013 version (15.0.
 
 ### Dataset Creation Process
 
-**Step 1)** First Download the Excel files from [Link](https://github.com/ArchanaRaghu512/ISQA8086-Team1/tree/master/Deliverables/DataCleaningDocumentation/Original%20Datasets)
+**Step 1)** First Download the Excel files from [Link](file:///Users/archanaraghu/Desktop/NebraskaEducationSystem/NES_RScript_and_Rplot.html)
 
 - Save to Desktop for easy retrieval
 

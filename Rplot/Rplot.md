@@ -182,3 +182,6 @@ From the graph we can come to a conclusion that the "Dropout Rate" of a school i
 the Dropout Rate of the school is low where the ELL percentage is high. 
 
 <img src="Images/Set5Plot.png" width="120%" />
+
+
+[Link to RScripts used to create plots](https://github.com/ArchanaRaghu512/NebraskaEducationSystem/blob/master/Rplot/Set%202%20%26%203.Rmd)
